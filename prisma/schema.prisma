@@ -12,7 +12,7 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
-  schemas  = ["user_schema", "admin_schema"]
+  schemas  = ["user_schema", "admin_schema", "account_schema"]
 }
 
 model User {
@@ -26,4 +26,29 @@ model User {
 
   @@map("users")
   @@schema("user_schema")
+}
+
+model Account {
+  id        String   @id
+  ownerId   String   @map("owner_id")
+  createdAt DateTime @map("created_at")
+  currency  String
+  type      String
+
+  @@map("accounts")
+  @@schema("account_schema")
+}
+
+model Operation {
+  id        String   @id
+  accountId String   @map("account_id")
+  partnerId String   @map("partner_id")
+  amount    Float
+  currency  String
+  time      DateTime @map("time")
+  type      String
+  comment   String
+  
+  @@map("operations")
+  @@schema("account_schema")
 }
