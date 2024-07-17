@@ -15,6 +15,8 @@ CREATE TABLE account_schema.accounts (
     created_at timestamp,
     currency text,
     type text,
+    tag text,
+    is_closed boolean,
     FOREIGN KEY (owner_id) REFERENCES user_schema.users(id)
 );
 

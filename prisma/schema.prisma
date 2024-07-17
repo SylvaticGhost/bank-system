@@ -19,10 +19,11 @@ model User {
   id           String   @id
   firstName    String   @map("first_name")
   lastName     String   @map("last_name")
-  email        String
+  email        String   @unique
   birthdate    DateTime @map("birth_date")
   passwordHash String   @map("password_hash")
   passwordSalt String   @map("password_salt")
+  blocked      Boolean
 
   @@map("users")
   @@schema("user_schema")
@@ -34,6 +35,8 @@ model Account {
   createdAt DateTime @map("created_at")
   currency  String
   type      String
+  tag       String
+  isClosed  Boolean  @map("is_closed")
 
   @@map("accounts")
   @@schema("account_schema")
@@ -48,7 +51,7 @@ model Operation {
   time      DateTime @map("time")
   type      String
   comment   String
-  
+
   @@map("operations")
   @@schema("account_schema")
 }

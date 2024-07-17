@@ -6,4 +6,5 @@ export type UserDto = {
     passwordHash: string;
     passwordSalt: string;
     birthdate: Date;
+    blocked: boolean;
 }
