@@ -1,4 +1,4 @@
-import {AccountDto} from "./models/account";
+import {AccountDto} from "./models/account.dto";
 import {AccountCreateDto} from "./models/account.create.dto";
 import { v4 as uuidv4 } from 'uuid';
 import {Currency} from "./currencies";

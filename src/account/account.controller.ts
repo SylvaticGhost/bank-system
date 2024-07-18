@@ -1,4 +1,4 @@
-import {Body, Controller, HttpException, Post, UseGuards} from '@nestjs/common';
+import {Body, Controller, Get, HttpException, Post, Query, UseGuards} from '@nestjs/common';
 import {UserGuard} from "../guard/user.guard";
 import {AccountCreateDto} from "./models/account.create.dto";
 import {GetPayload} from "../decorators/getPayload.decorator";
@@ -7,12 +7,13 @@ import {AccountService} from "./account.service";
 import {Account} from "./account.entity";
 import {TypeResult} from "../models/results/type-result";
 import {AccountCloseDto} from "./models/account.close.dto";
+import {BalanceService} from "./balance.service";
 
 @UseGuards(UserGuard)
 @Controller('account')
 export class AccountController {
-    constructor(private readonly accountService: AccountService) {
-    }
+    constructor(private readonly accountService: AccountService, 
+                private readonly balanceService: BalanceService) {}
     
     @Post('create') 
     async create(@Body() accountCreateDto: AccountCreateDto, @GetPayload() userPayload: UserPayloadDto) {  
@@ -34,6 +35,16 @@ export class AccountController {
             throw new HttpException(result.message, result.statusCode);
         
         return result;
+    }
+    
+    @Get('myBalance')
+    async getMyBalance(@Query('accountId') accountId: string,@GetPayload() userPayload: UserPayloadDto) {
+        const result = await this.balanceService.getBalanceForAccount(accountId, userPayload.id);
+        
+        if(!result.isSuccessful)
+            throw new HttpException(result.message, result.statusCode);
+        
+        return result.data;
     }
 
 }

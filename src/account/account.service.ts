@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import {PrismaService} from "../data/prisma.service";
 import {Account} from "./account.entity";
-import {AccountDto} from "./models/account";
 import {AccountType} from "./accountTypes";
 import {TypeResult} from "../models/results/type-result";
 import {Result} from "../models/results/result";
+import {AccountDto} from "./models/account.dto";
 
 @Injectable()
 export class AccountService {

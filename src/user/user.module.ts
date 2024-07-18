@@ -3,11 +3,12 @@ import { UserController } from './user.controller';
 import { UserService } from './user.service';
 import {PrismaService} from "../data/prisma.service";
 import { AuthModule } from './auth/auth.module';
+import {UserInfoService} from "./user-info.service";
 
 @Module({
   controllers: [UserController],
   imports: [AuthModule],
-  exports: [UserService],
-  providers: [UserService, PrismaService]
+  exports: [UserInfoService],
+  providers: [UserService, PrismaService, UserInfoService]
 })
 export class UserModule {}

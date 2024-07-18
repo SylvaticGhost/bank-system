@@ -43,15 +43,16 @@ model Account {
 }
 
 model Operation {
-  id        String   @id
-  accountId String   @map("account_id")
-  partnerId String   @map("partner_id")
-  amount    Float
-  currency  String
-  time      DateTime @map("time")
-  type      String
-  comment   String
+  transactionId String   @map("transaction_id")
+  accountId     String   @map("account_id")
+  partnerId     String   @map("partner_id")
+  amount        Float
+  currency      String
+  time          DateTime @map("time")
+  type          String
+  comment       String
 
+  @@id([transactionId, accountId])
   @@map("operations")
   @@schema("account_schema")
 }

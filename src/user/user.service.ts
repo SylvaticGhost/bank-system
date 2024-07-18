@@ -17,9 +17,18 @@ export class UserService {
         if (!record) 
             return null;
         
-        const user : UserDto = record;
+        return new User(record as UserDto);
+    }
+    
+    async getUserById(id: string) : Promise<User | null> { 
+        const record = await this.prismaService.user.findUnique({ 
+            where: { id: id }
+        });
         
-        return new User(user);
+        if (!record) 
+            return null;
+        
+        return new User(record as UserDto);
     }
     
     async checkIfUserExists(email: string) : Promise<boolean> { 
