@@ -1,5 +1,5 @@
 import { registerDecorator, ValidationOptions, ValidationArguments } from 'class-validator';
-import {CURRENCIES} from "../account/currencies";
+import {CURRENCIES} from "../buisness-info/currencies";
 
 
 export function IsCurrencyValid(validationOptions?: ValidationOptions) {
