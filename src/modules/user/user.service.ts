@@ -39,4 +39,18 @@ export class UserService {
         return record != null;
     }
     
+    async updatedUser(updatedUser: User) {
+        await this.prismaService.user.update({
+            where: { id: updatedUser.id },
+            data: {
+                email: updatedUser.email,
+                passwordHash: updatedUser.passwordHash,
+                passwordSalt: updatedUser.passwordSalt,
+                firstName: updatedUser.firstName,
+                lastName: updatedUser.lastName,
+                blocked: updatedUser.blocked,
+            }
+        });
+    }
+    
 }

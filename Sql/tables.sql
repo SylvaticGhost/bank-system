@@ -35,3 +35,13 @@ CREATE TABLE account_schema.operations (
 );
 
 CREATE INDEX operations_account_id_idx ON account_schema.operations(account_id);
+
+CREATE TABLE admin_schema.blocked_users (
+                                            action_id uuid PRIMARY KEY,
+                                            user_id uuid,
+                                            comment text,
+                                            blocked_at timestamp,
+                                            blocked_by TEXT,
+                                            action TEXT,
+                                            FOREIGN KEY (user_id) REFERENCES user_schema.users(id)
+)

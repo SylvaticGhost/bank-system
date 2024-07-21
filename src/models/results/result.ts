@@ -9,7 +9,7 @@ export class Result {
         this.statusCode = statusCode;
     }
 
-    static success(message: string, statusCode: number = 200) {
+    static success(message: string = '', statusCode: number = 200) {
         return new Result(true, message, statusCode);
     }
 

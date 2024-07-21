@@ -56,3 +56,15 @@ model Operation {
   @@map("operations")
   @@schema("account_schema")
 }
+
+model BlockedUser {
+  actionId  String   @id @map("action_id")
+  userId    String   @map("user_id")
+  blockedAt DateTime @map("blocked_at")
+  comment   String
+  blockedBy String   @map("blocked_by")
+  action    String
+
+  @@map("blocked_users")
+  @@schema("admin_schema")
+}

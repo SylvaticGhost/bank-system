@@ -4,10 +4,9 @@ import {PrismaService} from "./data/prisma.service";
 import { AccountModule } from './modules/account/account.module';
 import { OperationModule } from './modules/operation/operation.module';
 import {AdminModule} from "./modules/admin/admin.module";
-import { DepositeCalculatorModule } from './modules/deposite-calculator/deposite-calculator.module';
-
+import { DepositCalculatorModule } from './modules/deposit-calculator/deposit-calculator.module';
 @Module({
-  imports: [UserModule, AdminModule, AccountModule, OperationModule, DepositeCalculatorModule],
+  imports: [UserModule, AdminModule, AccountModule, OperationModule, DepositCalculatorModule],
   controllers: [],
   providers: [PrismaService],
 })
