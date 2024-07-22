@@ -56,4 +56,30 @@ export class AccountService {
             data: { isClosed: true }
         });
     }
+    
+    async reopenAccount(input: AccountActionInput) : Promise<Result> {
+        const account : Account = await this.getAccount(input.accountId);
+        
+        if(!account)
+            return Result.fail('Account not found', 404);
+        
+        if(!account.isClosed)
+            return Result.fail('Account is not closed', 400);
+        
+        if(input.validateIssuer && account.ownerId !== input.issuerId)
+            return Result.fail('Account does not belong to issuer', 403);
+        
+        await this.prismaService.account.update({
+            where: { id: input.accountId },
+            data: { isClosed: false }
+        });
+        
+        return Result.success();
+    }
+}
+
+export class AccountActionInput {
+    readonly accountId: string;
+    readonly issuerId?: string;
+    readonly validateIssuer: boolean = true;
 }

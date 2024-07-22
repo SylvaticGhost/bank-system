@@ -3,6 +3,7 @@ import {UserCreateDto} from "./models/user.create.dto";
 import { v4 as uuidv4 } from 'uuid';
 import {HashedPassword} from "./models/hashed-password";
 import {UserPayloadDto} from "./models/user.payload.dto";
+import { UserInfoDto } from './models/user-info.dto';
 
 export class User {
     id: string;
@@ -64,6 +65,16 @@ export class User {
             email: this.email,
             firstName: this.firstName,
             lastName: this.lastName
+        };
+    }
+    
+    getInfoDto() : UserInfoDto {
+        return {
+            id: this.id,
+            firstName: this.firstName,
+            lastName: this.lastName,
+            email: this.email,
+            blocked: this.blocked
         };
     }
     

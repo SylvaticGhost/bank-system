@@ -10,6 +10,7 @@ import {OperationInfoService} from "./operation-info.service";
 @Module({
   controllers: [OperationController],
   imports: [UserModule],
+  exports: [OperationService, OperationInfoService],
   providers: [OperationService, AccountService, PrismaService, BalanceService, OperationInfoService]
 })
 export class OperationModule {}

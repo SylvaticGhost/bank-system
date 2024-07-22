@@ -3,4 +3,5 @@ export type UserInfoDto = {
     firstName: string;
     lastName: string;
     email: string;
+    blocked: boolean;
 }

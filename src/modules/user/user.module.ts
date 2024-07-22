@@ -8,7 +8,7 @@ import {UserInfoService} from "./user-info.service";
 @Module({
   controllers: [UserController],
   imports: [AuthModule],
-  exports: [UserInfoService],
+  exports: [UserInfoService, UserService],
   providers: [UserService, PrismaService, UserInfoService]
 })
 export class UserModule {}

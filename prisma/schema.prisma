@@ -58,13 +58,27 @@ model Operation {
 }
 
 model BlockedUser {
-  actionId  String   @id @map("action_id")
-  userId    String   @map("user_id")
-  blockedAt DateTime @map("blocked_at")
-  comment   String
-  blockedBy String   @map("blocked_by")
-  action    String
+  actionId    String   @id @map("action_id")
+  userId      String   @map("user_id")
+  time        DateTime
+  comment     String
+  committedBy String   @map("committed_by")
+  action      String
 
   @@map("blocked_users")
+  @@schema("admin_schema")
+}
+
+model BlockedAccount {
+  actionId       String   @map("action_id")
+  accountId      String   @map("account_id")
+  accountOwnerId String   @map("account_owner_id")
+  time           DateTime
+  comment        String
+  committedBy    String   @map("committed_by")
+  action         String
+
+  @@id([actionId, accountId])
+  @@map("blocked_accounts")
   @@schema("admin_schema")
 }

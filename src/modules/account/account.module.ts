@@ -9,6 +9,7 @@ import { DepositAccountModule } from './deposit-account/deposit-account.module';
 @Module({
   controllers: [AccountController],
   providers: [AccountService, PrismaService, BalanceService, OperationService],
-  imports: [DepositAccountModule]
+  imports: [DepositAccountModule],
+  exports: [AccountService, BalanceService]
 })
 export class AccountModule {}
