@@ -23,4 +23,8 @@ export class OperationInfoService {
             };
         }));
     }
+    
+    async getDateOfLastOperationOfAccount(accountId: string) { 
+        
+    }
 }

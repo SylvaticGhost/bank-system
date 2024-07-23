@@ -5,8 +5,14 @@ import {DepositCalculateResult} from "./models/deposit-calculate.result";
 
 @Injectable()
 export class DepositCalculatorService {
-    calculateDeposit(input: DepositCalculateInput) : DepositCalculateResult { 
-        const rate  = Number(depositRate[input.currency]);
+    calculateDeposit(input: DepositCalculateInput, rateForDeposit?: number) : DepositCalculateResult { 
+        let rate;
+        
+        if (!rateForDeposit)
+            rate = Number(depositRate[input.currency]);
+        else
+            rate = rateForDeposit;
+        
         let sum = Number(input.amount);
         
         for (let i = 0; i < input.years; i++) {

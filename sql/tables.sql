@@ -22,6 +22,13 @@ CREATE TABLE account_schema.accounts
     FOREIGN KEY (owner_id) REFERENCES user_schema.users (id)
 );
 
+CREATE TABLE account_schema.deposit_info(
+    account_id uuid PRIMARY KEY,
+    rate numeric,
+    
+    FOREIGN KEY (account_id) REFERENCES account_schema.accounts (id)
+);
+
 CREATE TABLE account_schema.operations
 (
     transaction_id uuid,

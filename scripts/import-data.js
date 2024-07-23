@@ -21,6 +21,12 @@ async function importData() {
         const blockedUsers = await fs.readJson('blockedUsers.json')
         await prismaClient.blockedUser.createMany({ data: blockedUsers })
         
+        const blockedAccounts = await fs.readJson('blockedAccounts.json')
+        await prismaClient.blockedAccount.createMany({ data: blockedAccounts })
+        
+        const depositInfos = await fs.readJson('depositInfos.json')
+        await prismaClient.depositInfo.createMany({ data: depositInfos })
+        
         console.log('Data imported successfully!')
     }
     catch (error) {

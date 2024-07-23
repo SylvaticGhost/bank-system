@@ -25,6 +25,12 @@ async function exportData() {
         const blockedUsers = await prismaClient.blockedUser.findMany()
         await fs.writeJson('blockedUsers.json', blockedUsers)
         
+        const blockedAccounts = await prismaClient.blockedAccount.findMany()
+        await fs.writeJson('blockedAccounts.json', blockedAccounts)
+        
+        const depositInfos = await prismaClient.depositInfo.findMany()
+        await fs.writeJson('depositInfos.json', depositInfos)
+        
         console.log('Data exported successfully!')
     }
     catch (error) {

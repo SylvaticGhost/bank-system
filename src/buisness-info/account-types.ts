@@ -1,5 +1,6 @@
 export const ACCOUNT_TYPES = {
-    CASH: 'CASH'
+    CASH: 'CASH',
+    DEPOSIT: 'DEPOSIT',
 }
 
 type ObjectValues<T> = T[keyof T];

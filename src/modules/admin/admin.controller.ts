@@ -12,6 +12,9 @@ import { OperationInfoService } from '../operation/operation-info.service';
 import { BalanceService } from '../account/balance.service';
 import { TypeResult } from '../../models/results/type-result';
 import { AccountBalanceDto } from '../account/models/account.balance.dto';
+import { AccountInfo } from '../account/models/account-info.extended';
+import { ChangeRateInput } from './models/change-rate.input';
+import { AdminDepositService } from './admin-deposit.service';
 
 @Controller('admin')
 export class AdminController {
@@ -20,7 +23,8 @@ export class AdminController {
                 private readonly accountService: AccountService,
                 private readonly operationService: OperationService,
                 private readonly operationInfoService: OperationInfoService,
-                private readonly balanceService: BalanceService
+                private readonly balanceService: BalanceService,
+                private readonly adminDepositService: AdminDepositService
                 ) {}
     
     @Post('block-user')
@@ -40,8 +44,15 @@ export class AdminController {
         if(!userInfo)
             throw new HttpException('User not found', 404);
         
-        const usersAccounts : Account[] = await this.accountService.getUsersAccount(userId);
+        const usersAccounts : AccountInfo[] = await this.accountService.getUsersAccount(userId);
         
+        for (const account of usersAccounts) { 
+            const balanceResult : TypeResult<AccountBalanceDto> = 
+              await this.balanceService.getBalanceForAccount(account.id, userId, false);
+            
+            account.balance = balanceResult.data.balance;
+        }
+
         return { userInfo, accounts: usersAccounts };
     }
     
@@ -63,5 +74,12 @@ export class AdminController {
         const operations : Operation[] = await this.operationInfoService.getOperationsForAccount(accountId);
         
         return { account: account, balance: balance, operations: operations };
+    }
+    
+    @Post('change-rate-for-deposit')
+    async changeRateForDeposit(@Body() input: ChangeRateInput) {
+        this.adminDepositService.changeDepositRate(input.accountId, input.rate);
+        
+        return { isSuccessful: true };
     }
 }

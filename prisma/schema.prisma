@@ -42,6 +42,14 @@ model Account {
   @@schema("account_schema")
 }
 
+model DepositInfo {
+  accountId String @id @map("account_id")
+  rate      Float
+
+  @@map("deposit_info")
+  @@schema("account_schema")
+}
+
 model Operation {
   transactionId String   @map("transaction_id")
   accountId     String   @map("account_id")

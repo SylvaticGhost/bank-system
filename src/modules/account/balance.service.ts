@@ -4,6 +4,7 @@ import {AccountBalanceDto} from "./models/account.balance.dto";
 import {Account} from "./account.entity";
 import {Injectable} from "@nestjs/common";
 import {OperationService} from "../operation/operation.service";
+import {Operation} from "../operation/operation.entity";
 
 @Injectable()
 export class BalanceService {
@@ -20,7 +21,7 @@ export class BalanceService {
         if(validateIssuerId && account.ownerId !== issuerUserId)
             return TypeResult.fail<AccountBalanceDto>('Account does not belong to issuer', 403);
         
-        const operations = await this.operationService.getOperationsForAccount(accountId);
+        const operations : Operation[] = await this.operationService.getOperationsForAccount(accountId);
         
         let balance = 0;
         
@@ -28,6 +29,6 @@ export class BalanceService {
             balance += operation.amount;
         });
         
-        return TypeResult.success<AccountBalanceDto>({accountId: accountId, balance: balance}, 200);
+        return TypeResult.success<AccountBalanceDto>({accountId: accountId, balance: balance, currency: account.currency}, 200);
     }
 }

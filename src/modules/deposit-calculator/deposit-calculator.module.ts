@@ -4,6 +4,7 @@ import { DepositCalculatorService } from './deposit-calculator.service';
 
 @Module({
   controllers: [DepositCalculatorController],
-  providers: [DepositCalculatorService]
+  providers: [DepositCalculatorService],
+  exports: [DepositCalculatorService],
 })
 export class DepositCalculatorModule {}
