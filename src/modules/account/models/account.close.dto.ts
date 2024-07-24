@@ -1,6 +1,6 @@
-import {IsUUID} from "class-validator";
+import { ApiAccountIdProperty } from '../../../../api-docs/custom-decorators/accountId-api-property.decorator';
 
 export class AccountCloseDto {
-    @IsUUID()
-    readonly accountId: string;
+  @ApiAccountIdProperty()
+  readonly accountId: string;
 }

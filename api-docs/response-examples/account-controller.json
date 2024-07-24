@@ -1,0 +1,73 @@
+﻿{
+  "accountCreateResponse": {
+    "isSuccessful": true,
+    "message": "",
+    "statusCode": 200,
+    "data": {
+      "isClosed": false,
+      "id": "f686ae79-137c-4ed4-bc11-1a46ea4b63c3",
+      "ownerId": "23e5db56-82e5-4943-a683-4ffa36660ea1",
+      "tag": "uganda 2 money acc",
+      "currency": "USD",
+      "type": "CASH",
+      "createdAt": "2024-07-24T07:40:27.133Z"
+    }
+  },
+  
+  "getMyBalanceResponse" : {
+    "isSuccessful": true,
+    "message": "",
+    "statusCode": 200,
+    "data": {
+      "accountId": "f686ae79-137c-4ed4-bc11-1a46ea4b63c3",
+      "balance": 0,
+      "currency": "USD"
+    }
+  },
+  
+  "getMyBalanceConverted" : {
+    "isSuccessful": true,
+    "message": "",
+    "statusCode": 200,
+    "data": {
+      "accountId": "f686ae79-137c-4ed4-bc11-1a46ea4b63c3",
+      "balance": 0,
+      "currency": "EUR"
+    }
+  },
+  
+  "getMyAccounts": [
+    {
+      "isClosed": false,
+      "id": "d33b52a8-629a-4a48-873b-99080197d64d",
+      "ownerId": "23e5db56-82e5-4943-a683-4ffa36660ea1",
+      "tag": "uganda money acc",
+      "currency": "USD",
+      "type": "CASH",
+      "createdAt": "2024-07-22T14:42:07.934Z",
+      "balance": 9961
+    },
+    {
+      "isClosed": false,
+      "id": "79397ebb-747a-44da-b476-6b3831f57966",
+      "ownerId": "23e5db56-82e5-4943-a683-4ffa36660ea1",
+      "tag": "my deposit account",
+      "currency": "EUR",
+      "type": "DEPOSIT",
+      "createdAt": "2024-07-23T13:13:36.571Z",
+      "balance": 10000
+    },
+    {
+      "isClosed": true,
+      "id": "f686ae79-137c-4ed4-bc11-1a46ea4b63c3",
+      "ownerId": "23e5db56-82e5-4943-a683-4ffa36660ea1",
+      "tag": "uganda 2 money acc",
+      "currency": "USD",
+      "type": "CASH",
+      "createdAt": "2024-07-24T07:40:27.133Z",
+      "balance": 0
+    }
+  ]
+
+}
+

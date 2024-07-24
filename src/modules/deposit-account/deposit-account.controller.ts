@@ -16,7 +16,6 @@ import { AccountService } from '../account/account.service';
 import { ACCOUNT_TYPES } from '../../buisness-info/account-types';
 import { TypeResult } from '../../models/results/type-result';
 import { Account } from '../account/account.entity';
-
 import { depositRate } from '../../buisness-info/deposit-rate';
 import { DepositAccountService } from './deposit-account.service';
 import { DepositInfo } from './deposit-info.entity';
@@ -27,9 +26,13 @@ import { DepositCalculateInput } from '../deposit-calculator/models/deposit-calc
 import { BalanceService } from '../account/balance.service';
 import { AccountBalanceDto } from '../account/models/account.balance.dto';
 import { DepositCalculateResult } from '../deposit-calculator/models/deposit-calculate.result';
+import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import * as responseExamples from '../../../api-docs/response-examples/deposit-account-controller.json'
 
 @Controller('deposit-account')
 @UseGuards(UserGuard)
+@ApiTags('deposit-account')
+@ApiBearerAuth('access-token')
 export class DepositAccountController {
   constructor(private readonly accountService: AccountService,
               private readonly operationService: OperationService,
@@ -38,9 +41,15 @@ export class DepositAccountController {
               private readonly depositCalculatorService: DepositCalculatorService) {
   }
 
+  
   @Post('create')
+  @ApiOperation({ summary: 'Create bank account with deposit functionality' })
+  @ApiResponse({
+    status: 201,
+    schema: { example: responseExamples.createDeposit }
+  })
   async createDepositAccount(@Body() input: DepositCreateInput, @GetPayload() user: UserPayloadDto) {
-    const rate = depositRate[input.currency];
+    const rate : Number = depositRate[input.currency];
 
     if (!rate)
       throw new BadRequestException('currency is not supported');
@@ -63,8 +72,14 @@ export class DepositAccountController {
     return { account: accountCreateResult.data, depositInfo: depositInfo };
   }
 
+  
   @Post('calculate-income')
   @HttpCode(200)
+  @ApiOperation({ summary: 'Calculate future deposit income of this account' })
+  @ApiResponse({ 
+    status: 200,
+    schema: { example: responseExamples.calculateIncome }
+  })
   async calculateIncome(@Body() input: CalculateIncomeInput, @GetPayload() user: UserPayloadDto) {
     const account: Account = await this.accountService.getAccount(input.accountId);
 
@@ -99,6 +114,7 @@ export class DepositAccountController {
     return { date: endDate, ...depositCalculateResult };
   }
 
+  
   private validateAccountForCalc(account: Account, user: UserPayloadDto) {
     if (!account)
       throw new BadRequestException('Account not found');

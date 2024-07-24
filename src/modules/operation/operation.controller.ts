@@ -2,7 +2,7 @@ import {
     BadRequestException,
     Body,
     Controller,
-    Get,
+    Get, HttpCode,
     HttpException,
     NotFoundException,
     Post,
@@ -16,7 +16,6 @@ import {GetPayload} from "../../decorators/getPayload.decorator";
 import {v4 as uuidv4} from 'uuid';
 import {AccountService} from "../account/account.service";
 import {OperationService} from "./operation.service";
-
 import {Transaction} from "./models/transaction";
 import {Account} from "../account/account.entity";
 import {BalanceService} from "../account/balance.service";
@@ -24,16 +23,25 @@ import {OperationInfoService} from "./operation-info.service";
 import { TopUpOperationCreateDto } from './models/top-up-operation.create.dto';
 import { TopUpOperation } from './models/top-up-operation';
 import { getExchangeRateLatest } from './exchange-rate';
+import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import * as responseExamples from '../../../api-docs/response-examples/operation-controller.json'
+import { ApiAccountIdProperty } from '../../../api-docs/custom-decorators/accountId-api-property.decorator';
 
 @UseGuards(UserGuard)
 @Controller('operation')
+@ApiTags('operation')
+@ApiBearerAuth('access-token')
 export class OperationController {
     constructor(private readonly operationService: OperationService, 
                 private readonly accountService: AccountService,
                 private readonly balanceService: BalanceService,
                 private readonly operationInfoService: OperationInfoService) {}
     
+    
     @Post('transfer')
+    @HttpCode(200)
+    @ApiOperation({ summary: 'Transfer money from one account to another' })
+    @ApiResponse({ status: 200, schema: { example: responseExamples.transfer } })
     async transfer(@Body() input: TransferOperationCreateDto,
                    @GetPayload() user: UserPayloadDto){ 
         
@@ -82,7 +90,11 @@ export class OperationController {
         return transaction;
     }
     
+    
     @Post('top-up-account')
+    @HttpCode(200)
+    @ApiOperation({ summary: 'Top up account with money' })
+    @ApiResponse({ status: 200, schema: { example: responseExamples.topUpAccount } })
     async topUpAccount(@Body() input: TopUpOperationCreateDto, @GetPayload() user: UserPayloadDto) {
         const transactionId : string = uuidv4();
         
@@ -116,7 +128,11 @@ export class OperationController {
         return topUpOperation;
     }
     
+    
     @Get('operations')
+    @ApiOperation({ summary: 'Get operations for account' })
+    @ApiAccountIdProperty()
+    @ApiResponse({ status: 200, schema: { example: responseExamples.getOperations } })
     async getOperations(@GetPayload() user: UserPayloadDto, @Query('accountId') accountId: string) {
         const account: Account = await this.accountService.getAccount(accountId);
         

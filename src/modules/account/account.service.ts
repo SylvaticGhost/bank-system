@@ -31,12 +31,12 @@ export class AccountService {
         return dbRecords.map(record => new Account(record));
     }
     
-    async createAccount(createDto, userId, type: AccountType) { 
+    async createAccount(createDto, userId, type: AccountType) : Promise<TypeResult<Account>> { 
         const newAccount = Account.create(createDto, userId, type);
         
         await this.prismaService.account.create({data: newAccount.getDto()});
         
-        return TypeResult.success(newAccount);
+        return TypeResult.success(newAccount, 201);
     }
     
     async closeAccount(accountId: string, issuerId: string, validateIssuer: boolean = true ) : Promise<Result> {

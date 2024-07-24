@@ -1,0 +1,22 @@
+﻿{
+  "register": {
+    "isSuccessful": true,
+    "message": "",
+    "statusCode": 201,
+    "data": {
+      "id": "b13ae4e7-95be-450d-8b08-54939d19c9e3",
+      "firstName": "Julian3",
+      "lastName": "Pepe",
+      "email": "gay3@email.com",
+      "blocked": false
+    }
+  },
+  "login": {
+    "isSuccessful": true,
+    "message": "",
+    "statusCode": 200,
+    "data": {
+      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIzZTVkYjU2LTgyZTUtNDk0My1hNjgzLTRmZmEzNjY2MGVhMSIsImVtYWlsIjoiZ2F5QGVtYWlsLmNvbSIsImZpcnN0TmFtZSI6Ikp1bGlhbiIsImxhc3ROYW1lIjoiUGVwZSIsImlhdCI6MTcyMTgxNzY2MiwiZXhwIjoxNzIxODE3NzIyfQ.MvTdx_L0IRvajaIepFifmyWRtzQpo__eTmasSO7ev1U"
+    }
+  }
+}

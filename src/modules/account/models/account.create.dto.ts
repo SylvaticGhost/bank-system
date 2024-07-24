@@ -1,9 +1,15 @@
-import {IsString} from "class-validator";
-import {IsCurrencyValid} from "../../../decorators/isCurrencyValid.decorator";
+import { IsString } from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger';
+import { ApiCurrencyProperty } from '../../../../api-docs/custom-decorators/currency-api-property.decorator';
 
 export class AccountCreateDto {
-    @IsString()
-    tag: string;
-    @IsCurrencyValid()
-    currency: string;
+  @IsString()
+  @ApiProperty({
+    example: 'My first account',
+    description: 'the shown name tag for account for quicker finding and identifying',
+  })
+  tag: string;
+  
+  @ApiCurrencyProperty()
+  currency: string;
 }

@@ -1,6 +1,8 @@
 import {Result} from "./result";
+import { ApiProperty } from '@nestjs/swagger';
 
 export class TypeResult<T> extends Result {
+    @ApiProperty({description: 'The data that was requested or processed' })
     data: T;
 
     private constructor(isSuccessful: boolean, message: string, data: T, statusCode: number ) {

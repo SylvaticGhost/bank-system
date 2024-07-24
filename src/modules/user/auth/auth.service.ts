@@ -8,25 +8,27 @@ import {TypeResult} from "../../../models/results/type-result";
 import {JwtToken} from "./jwt-token";
 import {JwtService} from "@nestjs/jwt";
 import {UserService} from "../user.service";
+import { UserDto } from '../models/user.dto';
+import { UserInfoDto } from '../models/user-info.dto';
 
 @Injectable()
 export class AuthService {
     constructor(private readonly prismaService: PrismaService, private readonly jwtService: JwtService, private readonly userService: UserService) {
     }
     
-    async createUser(createDto: UserCreateDto) {
+    async createUser(createDto: UserCreateDto) : Promise<TypeResult<UserInfoDto>> {
         const hashedPassword = await PasswordHasher.hashPassword(createDto.password);
         
         if(await this.userService.checkIfUserExists(createDto.email))
-            return TypeResult.fail('User already exists', 400);
+            return TypeResult.fail<UserInfoDto>('User already exists', 400);
 
-        const user = User.fromCreateDto(createDto, hashedPassword);
+        const user : User = User.fromCreateDto(createDto, hashedPassword);
 
         await this.prismaService.user.create({
             data: user.getDto()
         });
         
-        return TypeResult.success(user, 201);
+        return TypeResult.success(user.getInfoDto(), 201);
     }
 
     async login(userLoginDto: UserLoginDto) : Promise<TypeResult<JwtToken>> {

@@ -1,0 +1,26 @@
+﻿{
+  "createDeposit": {
+    "account": {
+      "isClosed": false,
+      "id": "bcfde659-8756-4fb7-95d4-a57f081a7121",
+      "ownerId": "23e5db56-82e5-4943-a683-4ffa36660ea1",
+      "tag": "my deposit account 2",
+      "currency": "UAH",
+      "type": "DEPOSIT",
+      "createdAt": "2024-07-24T09:37:43.452Z"
+    },
+    "depositInfo": {
+      "accountId": "bcfde659-8756-4fb7-95d4-a57f081a7121",
+      "rate": 0.13
+    }
+  },
+  "calculateIncome": {
+    "date": "2027-07-23T13:13:36.911Z",
+    "amount": 10000,
+    "currency": "EUR",
+    "rate": 0.03,
+    "years": 3,
+    "resultSum": 10927.27,
+    "benefit": 927.2700000000004
+  }
+}

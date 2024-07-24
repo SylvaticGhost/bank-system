@@ -1,0 +1,54 @@
+﻿{
+  "transfer": {
+    "transactionId": "5d814ea5-474e-44d8-9b16-db8008d151ba",
+    "accountId": "d33b52a8-629a-4a48-873b-99080197d64d",
+    "partnerId": "79397ebb-747a-44da-b476-6b3831f57966",
+    "amount": 100,
+    "currency": "USD",
+    "time": "2024-07-24T10:14:24.302Z",
+    "type": "TRANSFER",
+    "comment": "transfer"
+  },
+  "topUpAccount": {
+    "transactionId": "8bb54ca1-b158-4f24-a200-13c8490b20d8",
+    "accountId": "d33b52a8-629a-4a48-873b-99080197d64d",
+    "time": "2024-07-24T10:17:40.762Z",
+    "currency": "USD",
+    "amount": 5000
+  },
+  "getOperations": [
+    {
+      "transactionId": "d2fc25ed-c51c-4097-b7bd-6006af166f11",
+      "accountId": "d33b52a8-629a-4a48-873b-99080197d64d",
+      "partnerId": "d33b52a8-629a-4a48-873b-99080197d64d",
+      "amount": 1,
+      "currency": "USD",
+      "time": "2024-07-23T09:56:23.490Z",
+      "type": "TOP_UP",
+      "comment": "top up account",
+      "partnerName": "Julian Pepe"
+    },
+    {
+      "transactionId": "fe9b805d-6eef-4be3-af88-2f31a57a83b7",
+      "accountId": "d33b52a8-629a-4a48-873b-99080197d64d",
+      "partnerId": "d33b52a8-629a-4a48-873b-99080197d64d",
+      "amount": 10000,
+      "currency": "USD",
+      "time": "2024-07-23T10:06:21.576Z",
+      "type": "TOP_UP",
+      "comment": "top up account",
+      "partnerName": "Julian Pepe"
+    },
+    {
+      "transactionId": "b0160507-a4c8-4d6f-affd-d7a3fd1d0481",
+      "accountId": "d33b52a8-629a-4a48-873b-99080197d64d",
+      "partnerId": "d33b52a8-629a-4a48-873b-99080197d64d",
+      "amount": -40,
+      "currency": "USD",
+      "time": "2024-07-23T10:06:35.542Z",
+      "type": "TOP_UP",
+      "comment": "top up account",
+      "partnerName": "Julian Pepe"
+    }
+  ]
+}
