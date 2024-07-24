@@ -12,7 +12,7 @@ import {
 import {UserGuard} from "../../guards/user.guard";
 import {TransferOperationCreateDto} from "./models/transfer.operation.create.dto";
 import {UserPayloadDto} from "../user/models/user.payload.dto";
-import {GetPayload} from "../../decorators/getPayload.decorator";
+import {GetPayload} from "../../decorators/get-payload.decorator";
 import {v4 as uuidv4} from 'uuid';
 import {AccountService} from "../account/account.service";
 import {OperationService} from "./operation.service";

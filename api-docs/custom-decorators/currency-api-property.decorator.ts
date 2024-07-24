@@ -1,5 +1,5 @@
 ﻿import { applyDecorators } from '@nestjs/common';
-import { IsCurrencyValid } from '../../src/decorators/isCurrencyValid.decorator';
+import { IsCurrencyValid } from '../../src/decorators/is-currency-valid.decorator';
 import { ApiProperty } from '@nestjs/swagger';
 import { CURRENCIES } from '../../src/buisness-info/currencies';
 
