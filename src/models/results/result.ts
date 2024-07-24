@@ -2,13 +2,13 @@ import { ApiProperty } from '@nestjs/swagger';
 
 export class Result {
     @ApiProperty({description: 'indicates that operation completed successfully' })
-    isSuccessful: boolean;
+    readonly isSuccessful: boolean;
     
     @ApiProperty({description: 'status code of the operation' })
-    statusCode: number;
+    readonly statusCode: number;
     
     @ApiProperty({description: 'message that describes the result, in success usually is empty' })
-    message: string;
+    readonly message: string;
 
     protected constructor(isSuccessful: boolean, message: string, statusCode: number = 200) {
         this.isSuccessful = isSuccessful;

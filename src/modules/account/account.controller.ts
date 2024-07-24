@@ -15,7 +15,7 @@ import { AccountActionInput, AccountService } from './account.service';
 import { AccountCloseDto } from './models/account.close.dto';
 import { BalanceService } from './balance.service';
 import { UserGuard } from '../../guards/user.guard';
-import { GetPayload } from '../../decorators/getPayload.decorator';
+import { GetPayload } from '../../decorators/get-payload.decorator';
 import { Currency, validateCurrency } from '../../buisness-info/currencies';
 import { TypeResult } from '../../models/results/type-result';
 import { AccountBalanceDto } from './models/account.balance.dto';
