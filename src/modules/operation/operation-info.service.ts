@@ -1,8 +1,8 @@
 import {OperationService} from "./operation.service";
 import {AccountService} from "../account/account.service";
-import {Account} from "@prisma/client";
 import {Injectable} from "@nestjs/common";
 import {UserInfoService} from "../user/user-info.service";
+import { Account } from '../account/account.entity';
 
 @Injectable()
 export class OperationInfoService {

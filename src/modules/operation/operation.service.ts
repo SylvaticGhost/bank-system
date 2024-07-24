@@ -7,7 +7,6 @@ import { Account } from '../account/account.entity';
 import { Currency } from '../../buisness-info/currencies';
 import { TopUpOperation } from './models/top-up-operation';
 import { OPERATION_TYPES } from '../../buisness-info/operation-types';
-import { Prisma } from '@prisma/client';
 
 @Injectable()
 export class OperationService {
@@ -107,11 +106,11 @@ export class OperationService {
   }
 
   async getDateOfLastOperationOfAccount(accountId: string): Promise<Date | null> {
-    const result = await this.prismaService.$queryRaw<{ time: Date }[]>(Prisma.sql`SELECT time
+    const result = await this.prismaService.$queryRaw<{ time: Date }[]>`SELECT time
                                                                                    FROM account_schema.operations
                                                                                    WHERE account_id = ${accountId}::uuid
                                                                                    ORDER BY time DESC
-                                                                                   LIMIT 1;`);
+                                                                                   LIMIT 1;`;
     return result.length > 0 ? result[0].time : null;
 }
 }

@@ -3,7 +3,6 @@ import { PrismaService } from '../../data/prisma.service';
 import { UserBlockInput } from './models/user-block.input';
 import { ADMIN_ACTIONS, AdminAction } from './admin-actions';
 import { UserService } from '../user/user.service';
-import { User } from '@prisma/client';
 import { Result } from '../../models/results/result';
 import { uuid } from 'uuidv4';
 import { BlockedUser } from './action-logs/blocked-user';
@@ -11,6 +10,7 @@ import { AccountService } from '../account/account.service';
 import { BlockedAccount } from './action-logs/blocked-account';
 import { TypeResult } from '../../models/results/type-result';
 import { Account } from '../account/account.entity';
+import { User } from '../user/user.entity';
 
 @Injectable()
 export class AdminService {
